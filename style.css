@@ -1,0 +1,11 @@
+p, h1, h2, h3, h4 {
+    min-height: 16px;
+}
+
+.editor {
+    width: 80%;
+    min-height: 600px;
+
+    border: 1px solid #000;
+    margin: 0 auto;
+}
