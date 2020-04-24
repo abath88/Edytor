@@ -1,4 +1,8 @@
-class Edytor {
+import Block from './lib/block.js'
+import Offset from './lib/offset.js'
+import Text from './lib/text.js'
+
+/*class Edytor {
     constructor(props){
         this.container = props.container
         
@@ -105,5 +109,21 @@ class Edytor {
 let editor = new Edytor(
     {
         container : document.getElementById("edytor")
+    }
+)*/
+
+
+let editor = new Edytor(
+    {
+        container : document.getElementById("edytor"),
+        blocks : [
+            new Offset({
+                offsets: [
+                    new Text('aaaa'),
+                    new Text('bbb')
+                    new Text('ccc')
+                ]
+            })
+        ]
     }
 )
