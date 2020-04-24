@@ -18,6 +18,7 @@ class Editor {
     }
 
     render() {
+        
         let test = this.blocks.map(block => {
             let off = block.offsets
             let str = `<${block.type}>`
@@ -33,7 +34,7 @@ class Editor {
 
             return str
         })
-
+        
         this.container.innerHTML = test
     }
 }

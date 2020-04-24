@@ -1,6 +1,7 @@
 import Block from './lib/block.js'
 import Offset from './lib/offset.js'
 import Text from './lib/text.js'
+import Editor from './component/edytor.js';
 
 /*class Edytor {
     constructor(props){
@@ -113,17 +114,20 @@ let editor = new Edytor(
 )*/
 
 
-let editor = new Edytor(
+let editor = new Editor(
     {
         container : document.getElementById("edytor"),
         blocks : [
-            new Offset({
-                offsets: [
-                    new Text('aaaa'),
-                    new Text('bbb')
-                    new Text('ccc')
-                ]
-            })
+            new Block({
+                offsets: 
+                    [
+                        new Text('aaaa'),
+                        new Text('bbb'),
+                        new Text('ccc'),
+                    ]
+                })
         ]
     }
 )
+
+editor.render()
