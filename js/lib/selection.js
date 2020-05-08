@@ -4,7 +4,7 @@ class Selection {
     }
 
     getSelection = () => {
-        let browserSelection = this.editor.ownerDocument.getSelection();
+        let browserSelection = this.editor.container.ownerDocument.getSelection();
         let range = browserSelection.getRangeAt(0)
 
         let startNode = range.startContainer.parentElement
@@ -17,7 +17,7 @@ class Selection {
             endNode : endNode.dataset.offset,
             startOffset : range.startOffset,
             endOffset : range.endOffset,
-            isCollapsed: browserSelection.isCollapsed()
+            isCollapsed: browserSelection.isCollapsed
         }
     }
 

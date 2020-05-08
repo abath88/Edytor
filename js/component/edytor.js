@@ -26,7 +26,6 @@ class Editor {
     }
 
     _handleKeyDown(e){
-        console.log(this.selection)
         console.log(this.selection.getSelection())
     }
 
