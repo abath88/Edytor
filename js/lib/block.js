@@ -1,36 +1,44 @@
-import Offset from './offset.js'
+import Node from './node.js'
 
 class BlockText {
     constructor(params = {}) {
-        this.type = 'p'
-        if(params.hasOwnProperty('offsets')){
-            this.createBlock(params.offsets)
-            this.length = params.offsets.length
+        params.hasOwnProperty('key')
+            ? this.key = params.key
+            : this.key = 'key' + ( 1 + Math.floor(Math.random() * 49) )
+
+        params.hasOwnProperty('type') 
+            ? this.type = prarams.type
+            : this.type = 'p'
+        
+        if(params.hasOwnProperty('nodes')){
+            this.createBlock(params.nodes)
+            this.length = params.nodes.length
         } else {
-            this.offsets = new Offset()
+            this.nodes = new Node()
             this.length = 1
         }
     }
 
-    createBlock(texts = []) {
-        
+    //[ {text: 'ddd'} , { text: 'bbb'}, {text: 'ccc'}, {text: 'aaa'} ]
+
+    createBlock(texts = []) { 
         let offset = 0
-        let prevOffset = null
+        let prevNode = null
         for(let i=0;i<texts.length;i++){
             
             if(i==0) {
-                this.offsets = new Offset({
+                this.nodes = new Node({
                        text: texts[i],
                        offset: offset,
                 })
-                prevOffset = this.offsets;
+                prevNode = this.nodes;
             } else {
-                offset += prevOffset.text.length
-                prevOffset.next = new Offset({
+                offset += prevNode.text.length
+                prevNode.next = new Node({
                   text: texts[i],
                   offset: offset,
                 })
-                prevOffset = prevOffset.next;
+                prevNode = prevNode.next;
             }
         }
     }

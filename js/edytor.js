@@ -1,5 +1,5 @@
 import Block from './lib/block.js'
-import Offset from './lib/offset.js'
+import Offset from './lib/node.js'
 import Text from './lib/text.js'
 import Editor from './component/edytor.js';
 
@@ -119,7 +119,7 @@ let editor = new Editor(
         container : document.getElementById("edytor"),
         blocks : [
             new Block({
-                offsets: 
+                nodes: 
                     [
                         new Text('aaaa'),
                         new Text('bbb'),

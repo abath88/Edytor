@@ -1,6 +1,6 @@
 import Text from './text.js'
 
-class Offset {
+class Node {
     constructor(params = {}){
         params.hasOwnProperty('text') 
             ? this.text = params.text
@@ -16,4 +16,4 @@ class Offset {
     } 
 }
 
-export default Offset
+export default Node
