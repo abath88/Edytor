@@ -12,8 +12,8 @@ class Node {
             
         params.hasOwnProperty('next')
             ? this.next = params.next
-            : this.next = null //Offset
-    } 
+            : this.next = null //Node
+    }
 }
 
 export default Node

@@ -5,7 +5,7 @@ class Text {
     }
 
     set content(value) {
-        this._content = content;
+        this._content = value;
         this.length = value.length;
     }
 

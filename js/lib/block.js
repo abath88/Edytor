@@ -4,7 +4,7 @@ class BlockText {
     constructor(params = {}) {
         params.hasOwnProperty('key')
             ? this.key = params.key
-            : this.key = 'key' + ( 1 + Math.floor(Math.random() * 49) )
+            : this.key = 'key' + ( 1 + Math.floor(Math.random() * 50) )
 
         params.hasOwnProperty('type') 
             ? this.type = prarams.type
@@ -25,7 +25,6 @@ class BlockText {
         let offset = 0
         let prevNode = null
         for(let i=0;i<texts.length;i++){
-            
             if(i==0) {
                 this.nodes = new Node({
                        text: texts[i],

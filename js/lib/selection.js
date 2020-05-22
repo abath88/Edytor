@@ -3,16 +3,16 @@ class Selection {
         this.editor = params.editor
     }
 
-    getSelection = () => {
+    getSelection(){
         let browserSelection = this.editor.container.ownerDocument.getSelection();
         let range = browserSelection.getRangeAt(0)
 
         let startNode = range.startContainer.parentElement
-        let endNode = range.startContainer.parentElement
+        let endNode = range.endContainer.parentElement
 
         return {
             startBlock : startNode.parentElement.dataset.key,
-            endBlock : startNode.parentElement.dataset.key,
+            endBlock : endNode.parentElement.dataset.key,
             startNode : startNode.dataset.offset,
             endNode : endNode.dataset.offset,
             startOffset : range.startOffset,
@@ -25,8 +25,8 @@ class Selection {
         let doc = this.editor.ownerDocument
 
         let startBlock = doc.querySelection(`[data-key="${selection.startBlock}"]`)
-        let startNode = startBlock.querySelection(`[data-offset="${selection.startNode}"]`)
-        let endBlock = doc.querySelection(`[data-key="${selection.endBlock}"]`).childNodes[0]
+        let startNode = startBlock.querySelection(`[data-offset="${selection.startNode}"]`).childNodes[0]
+        let endBlock = doc.querySelection(`[data-key="${selection.endBlock}"]`)
         let endNode = endBlock.querySelection(`[data-offset="${selection.endNode}"]`).childNodes[0]
         
         let newRange = doc.createRange()

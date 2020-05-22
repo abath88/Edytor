@@ -114,20 +114,22 @@ let editor = new Edytor(
 )*/
 
 
-let editor = new Editor(
-    {
-        container : document.getElementById("edytor"),
-        blocks : [
-            new Block({
-                nodes: 
-                    [
-                        new Text('aaaa'),
-                        new Text('bbb'),
-                        new Text('ccc'),
-                    ]
-                })
-        ]
-    }
-)
+let editor = new Editor({
+  container: document.getElementById('edytor'),
+  blocks: [
+    new Block({
+      nodes: [new Text('aaa'), new Text('bbb'), new Text('ccc')],
+    }),
+    new Block({
+      nodes: [new Text('aaa'), new Text('bbb'), new Text('ccc')],
+    }),
+    new Block({
+      nodes: [new Text('aaa'), new Text('bbb'), new Text('ccc')],
+    }),
+    new Block({
+      nodes: [new Text('aaa'), new Text('bbb'), new Text('ccc')],
+    }),
+  ],
+});
 
 editor.render()

@@ -17,7 +17,6 @@ class Editor {
             ? this.placeholder = params.placeholder
             : this.placeholder = "Wprowadź tekst"
 
-
         this.selection = new Selection({editor: this})
         
 
@@ -26,7 +25,53 @@ class Editor {
     }
 
     _handleKeyDown(e){
-        console.log(this.selection.getSelection())
+        /*{
+            startBlock 
+            endBlock 
+            startNode 
+            endNode 
+            startOffset
+            endOffset 
+            isCollapsed
+        } */
+        let selection = this.selection.getSelection();
+
+        if(selection.isCollapsed) {
+            let block = this.blocks.find( el => {
+                return el.key === selection.startBlock
+            })
+
+            let node = block.nodes;
+
+            while(node.offset != selection.startNode) {
+                node = node.next
+            }
+            
+            let before = node.text.content.slice(0, selection.startOffset)
+            let keyDown = e.key
+            let after = node.text.content.slice(selection.startOffset);
+
+            node.text.content = `${before}${keyDown}${after}`
+        } else {
+
+            let toDelete = []
+            let del = false
+
+            for(let i=0;i<this.blocks.length;i++) {
+                if(del) toDelete.push(i)
+
+                if(this.blocks[i].key === selection.startBlock) {
+                    del = true
+                }
+                if(this.blocks[i].key === selection.endBlock) {
+                    del = false
+                }
+            }
+            if(toDelete) 
+                this.blocks.splice(toDelete[0], toDelete.length)
+        }
+
+        console.log(this.blocks)
     }
 
     hasContainer() {
@@ -49,7 +94,7 @@ class Editor {
             str += `</${block.type}>`;
 
             return str
-        })
+        }).join('')
         
         this.container.innerHTML = test
     }
