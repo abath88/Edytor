@@ -53,25 +53,55 @@ class Editor {
 
             node.text.content = `${before}${keyDown}${after}`
         } else {
+            this.deleteBlocks(selection)
+            let lastNode = this.getBlockByKey(selection.startBlock).nodes
+            
+            while(true) 
+                if (lastNode.next) lastNode = lastNode.next;
+                else break;
 
-            let toDelete = []
-            let del = false
+            this.getBlockByKey(selection.startBlock).deleteNodes(
+                selection.startNode,
+                lastNode.offset
+            )
+            
+            let nodeToClear = this.getBlockByKey(
+              selection.startBlock
+            ).nodes.getNodeByKey(selection.startNode);
 
-            for(let i=0;i<this.blocks.length;i++) {
-                if(del) toDelete.push(i)
+                console.log(selection.startOffset, nodeToClear.text.length);
 
-                if(this.blocks[i].key === selection.startBlock) {
-                    del = true
-                }
-                if(this.blocks[i].key === selection.endBlock) {
-                    del = false
-                }
-            }
-            if(toDelete) 
-                this.blocks.splice(toDelete[0], toDelete.length)
+            nodeToClear.deleteSelectedText(
+              0,
+              selection.startOffset
+            );
+
+            console.log(this.getBlockByKey(selection.startBlock));
+        }
+    }
+
+    deleteBlocks(selection) {
+        let toDelete = [];
+        let del = false;
+
+        for (let i = 0; i < this.blocks.length; i++) {
+            this.blocks[i].key === selection.endBlock &&
+            (del = false)
+            
+            del && toDelete.push(i)
+
+            this.blocks[i].key === selection.startBlock &&
+            this.blocks[i].key != selection.endBlock &&
+            (del = true)
         }
 
-        console.log(this.blocks)
+        toDelete && this.blocks.splice(toDelete[0], toDelete.length)
+    }
+
+    
+
+    getBlockByKey(key) {
+        return this.blocks.find((block) => block.key == key);
     }
 
     hasContainer() {
